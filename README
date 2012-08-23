@@ -1,0 +1,23 @@
+This is a barebones application to create plots from the Business Dynamics
+Statistics data provided by the US Census Bureau.
+
+Installation
+
+The directory demo1 is the Django application. Edit the file
+demo1/demo1/settings.py to set the proper values for DATABASE.NAME,
+DATABASE.USER, DATABASE.PASSWORD and TEMPLATE_DIRS.
+
+The directory django_templates should be located wherever indicated by
+TEMPLATE_DIRS.
+
+The setup directory contains the scripts to load the data after running
+'manage.py syncdb'. It also contains a WSGI script called 'django.wsgi' which
+modifies the default Django wsgi.py according to the recommendations on the
+WSGI site. See http://code.google.com/p/modwsgi/wiki/IntegrationWithDjango .
+
+Due to the differences between the Django development environment and the WSGI
+environment, submission URLs in HTML forms need to be changed to match whatever
+has been defined as the WSGIScriptAlias. I should automate this, but haven't
+yet.
+
+TODO: almost everything..

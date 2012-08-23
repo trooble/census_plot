@@ -1,0 +1,96 @@
+<!--
+# Copyright 2012 Karim Sumun
+#
+# This file is part of Simple Census Plotter.
+#
+# Simple Census Plotter is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<head>
+  <link rel="stylesheet" href="/static/bds.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript">
+    var selections = {};
+    $(document).ready(function(){
+      $("#state_div > span").click(function(e) {
+        var target = $(e.target);
+        var span_class = target.attr("class");
+        if (span_class === "state_class_selected") {
+           target.attr("class", "state_class_unselected");
+           delete selections[target.attr("id")];
+        } else {
+           target.attr("class", "state_class_selected");
+           selections[target.attr("id")] = 1;
+        }
+      });
+      $("#selection_form").submit(function (e) {
+         target = $(e.target);
+         for (state in selections) {
+           target.append('<input name="state" type="hidden" value="' + state + '">')
+         }
+      });
+    });
+  </script>
+</head>
+<form action="/chart" id="selection_form" method="GET">
+  {% if missing_params %}
+  <div id="missing_params">
+    Please select one or more states and an indicator
+  </div>
+  {% endif %}
+  <div id="state_div">
+  <div id="state_label">
+    Click on a state abbreviation to select or de-select it
+  </div>
+    {% for state in states %}
+      <span class="state_class_unselected" id="{{state.abbreviation}}">
+        {{state.abbreviation}}
+      </span>
+    {% endfor %}
+  </div>
+  <div id="indicator_div">
+  <div id="indicator_label">
+    Please select one indicator
+  </div>
+<span id="indicator_span">      <label><input id="firms" type="radio" name="indicator" value="firms">firms</label><br></span>
+<span id="indicator_span">      <label><input id="estabs" type="radio" name="indicator" value="estabs">estabs</label><br></span>
+<span id="indicator_span">      <label><input id="emp" type="radio" name="indicator" value="emp">emp</label><br></span>
+<span id="indicator_span">      <label><input id="denom" type="radio" name="indicator" value="denom">denom</label><br></span>
+<span id="indicator_span">      <label><input id="estabs_entry" type="radio" name="indicator" value="estabs_entry">estabs_entry</label><br></span>
+<span id="indicator_span">      <label><input id="estabs_entry_rate" type="radio" name="indicator" value="estabs_entry_rate">estabs_entry_rate</label><br></span>
+<span id="indicator_span">      <label><input id="estabs_exit" type="radio" name="indicator" value="estabs_exit">estabs_exit</label><br></span>
+<span id="indicator_span">      <label><input id="estabs_exit_rate" type="radio" name="indicator" value="estabs_exit_rate">estabs_exit_rate</label><br></span>
+<span id="indicator_span">      <label><input id="job_creation" type="radio" name="indicator" value="job_creation">job_creation</label><br></span>
+<span id="indicator_span">      <label><input id="job_creation_births" type="radio" name="indicator" value="job_creation_births">job_creation_births</label><br></span>
+<span id="indicator_span">      <label><input id="job_creation_continuers" type="radio" name="indicator" value="job_creation_continuers">job_creation_continuers</label><br></span>
+<span id="indicator_span">      <label><input id="job_creation_rate_births" type="radio" name="indicator" value="job_creation_rate_births">job_creation_rate_births</label><br></span>
+<span id="indicator_span">      <label><input id="Job_creation_rate" type="radio" name="indicator" value="Job_creation_rate">Job_creation_rate</label><br></span>
+<span id="indicator_span">      <label><input id="job_destruction" type="radio" name="indicator" value="job_destruction">job_destruction</label><br></span>
+<span id="indicator_span">      <label><input id="job_destruction_deaths" type="radio" name="indicator" value="job_destruction_deaths">job_destruction_deaths</label><br></span>
+<span id="indicator_span">      <label><input id="job_destruction_continuers" type="radio" name="indicator" value="job_destruction_continuers">job_destruction_continuers</label><br></span>
+<span id="indicator_span">      <label><input id="job_destruction_rate_deaths" type="radio" name="indicator" value="job_destruction_rate_deaths">job_destruction_rate_deaths</label><br></span>
+<span id="indicator_span">      <label><input id="job_destruction_rate" type="radio" name="indicator" value="job_destruction_rate">job_destruction_rate</label><br></span>
+<span id="indicator_span">      <label><input id="net_job_creation" type="radio" name="indicator" value="net_job_creation">net_job_creation</label><br></span>
+<span id="indicator_span">      <label><input id="net_job_creation_rate" type="radio" name="indicator" value="net_job_creation_rate">net_job_creation_rate</label><br></span>
+<span id="indicator_span">      <label><input id="reallocation_rate" type="radio" name="indicator" value="reallocation_rate">reallocation_rate</label><br></span>
+  </div>
+  <div id="submit_div">
+    <input type="submit" id="selection_submit" value="Plot">
+   <p>
+   <a href="http://www.census.gov/ces/dataproducts/bds/definitions.html">
+    US Census Bureau definitions
+   </a>
+   </p>
+  </div>
+</form>

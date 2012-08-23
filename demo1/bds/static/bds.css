@@ -1,0 +1,93 @@
+/*
+# Copyright 2012 Karim Sumun
+#
+# This file is part of Simple Census Plotter.
+#
+# Simple Census Plotter is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+*/
+.state_class_unselected {
+  width: 50;
+  text-align: center;
+  padding-right: 5;
+  padding-left: 5;
+  margin-right: 5;
+  margin-left: 5;
+  float: left;
+  background: white;
+}
+
+.state_class_selected {
+  width: 50;
+  text-align: center;
+  padding-right: 5;
+  padding-left: 5;
+  margin-right: 5;
+  margin-left: 5;
+  float: left;
+  background: blue;
+}
+
+#state_div {
+  float: left;
+  width: 10em;
+  margin: 5;
+  padding: 5;
+  border: solid black 1px;
+}
+
+#state_label {
+  margin: 5;
+  padding: 5;
+  text-align: center;
+}
+
+#indicator_label {
+  margin: 5;
+  padding: 5;
+  text-align: left;
+}
+
+#indicator_div {
+  float: left;
+  margin: 5;
+  padding: 5;
+  width: 600;
+  border: solid black 1px;
+}
+
+#indicator_span {
+  float: left;
+  width: 300;
+}
+
+#submit_div {
+  float: left;
+  padding-left: 5;
+  padding-right: 5;
+  width: 10em;
+}
+
+#selection_submit {
+  font-size: x-large;
+  font-weight: bold;
+  width: 6em;
+  height: 3em;
+}
+
+#missing_params {
+  font-size: larger;
+  font-weight: bold;
+  color: red;
+}
